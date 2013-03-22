@@ -13,12 +13,10 @@ module LazyGoogleAnalytics
       @metrics = opts[:client_options][:metrics] ||= "ga:visits"
       @sort = opts[:client_options][:sort] ||= "ga:month,ga:day"
 
-
-
     end
 
 
-    def find
+    def results
 
       startDate = DateTime.now.prev_month.strftime("%Y-%m-%d")
       endDate = DateTime.now.strftime("%Y-%m-%d")
@@ -32,16 +30,20 @@ module LazyGoogleAnalytics
                                   'sort' => @sort }
                 }
 
-      visitCount = @auth.client.execute( options)
+      @results = @auth.client.execute( options)
 
-      print visitCount.data.column_headers.map { |c|
+    end
+
+    def formatted_columns
+      (@results || self.results).data.column_headers.map { |c|
         c.name
       }.join("\t")
+    end
 
-      visitCount.data.rows.each do |r|
+    def formatted_rows
+      (@results || self.results).data.rows.each do |r|
         print r.join("\t"), "\n"
       end
-
     end
 
   end

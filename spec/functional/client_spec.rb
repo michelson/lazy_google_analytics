@@ -10,13 +10,11 @@ describe "Client" do
                                               :auth=>@auth,
                                               :client_options => {}
                                               })
-
-
   end
 
   it "find objects object" do
-
-    @client.find
+    #binding.pry
+    @client.results
   end
 
 end

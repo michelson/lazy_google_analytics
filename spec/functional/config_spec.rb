@@ -17,14 +17,4 @@ describe "Config" do
     @config.email.should_not be_empty
   end
 
-  it "config should be valid" do
-    pending
-    @config.has_required_keys?.should be true
-  end
-
-  it "failed config should raise an error" do
-    pending
-    @config.has_required_keys?.should be LazyGoogleAnalytics::Config::WrongConfig
-  end
-
 end
