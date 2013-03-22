@@ -8,5 +8,6 @@ module LazyGoogleAnalytics
   autoload  :VERSION,  'lazy_google_analytics/version.rb'
   autoload  :Config,   'lazy_google_analytics/config.rb'
   autoload  :Auth,     'lazy_google_analytics/auth.rb'
+  autoload  :Client,   'lazy_google_analytics/client.rb'
 
 end
