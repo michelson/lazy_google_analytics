@@ -16,7 +16,7 @@ Or install it yourself as:
 
     $ gem install lazy_google_analytics
 
-## Usage
+## Simple Usage
 
     config_options = pass_phrase: "notasecret",
                      key_file: /location/to_your/key_file.p12,
@@ -36,14 +36,14 @@ Or install it yourself as:
                                               :client_options => {}
                                               })
 
-
 ## GA How to:
 
-+ First, you have to register your api access in: [google api console](https://code.google.com/apis/console/) and create a server key.
-+ Download you p12 key.
-+ Add the created @developer.gserviceaccount.com to your users list in the analytics user panel.
-+ Configure options based on server key and analytics profile id, not the (UA-something)account id!
+If you follow this simple steps , you can´t fail.
 
+  + First, you have to register your api access in: [google api console](https://code.google.com/apis/console/) and create a server key.
+  + Download the p12 key.
+  + Add the created @developer.gserviceaccount.com to your users list in the analytics user panel.
+  + Configure options based on server key and analytics profile id, not the (UA-something) account id!
 
 
 ## Contributing
@@ -53,3 +53,10 @@ Or install it yourself as:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+### TODO
+
+  + Needs some refactor on client options.
+  + Needs more specs on client options.
+  + Config Generators for ruby on rails for the laziest ones.
