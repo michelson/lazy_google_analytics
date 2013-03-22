@@ -1,6 +1,11 @@
 # LazyGoogleAnalytics
 
-Lazy google analytics for the lazy programmer.
+Lazy google analytics for the lazy programmer. it´s an abstraction around google-analytics-client gem.
+
+## Motivation
+
+google-analytics-client gem is a very powerfull tool to access the api resources on google. but for me it was not very straightforward , so i come around with a simple way to implement it. thats all. Hope you like it.
+
 
 ## Installation
 
@@ -60,3 +65,7 @@ If you follow this simple steps , you can´t fail.
   + Needs some refactor on client options.
   + Needs more specs on client options.
   + Config Generators for ruby on rails for the laziest ones.
+
+
+
+
