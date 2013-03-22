@@ -1,6 +1,6 @@
 # LazyGoogleAnalytics
 
-TODO: Write a gem description
+Lazy google analytics for the lazy programmer.
 
 ## Installation
 
@@ -18,7 +18,33 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    config_options = pass_phrase: "notasecret",
+                     key_file: /location/to_your/key_file.p12,
+                     client_id: "XXXXX.apps.googleusercontent.com",
+                     scope: "https://www.googleapis.com/auth/analytics.readonly",
+                     profile_id: "XXXXX",
+                     email: "XXXXXX@developer.gserviceaccount.com"
+
+    @config = LazyGoogleAnalytics::Config.new(config_options)
+
+    @auth   = LazyGoogleAnalytics::Auth.new(@config)
+
+    @auth.authorize
+
+    @client = LazyGoogleAnalytics::Client.new({:config=>@config,
+                                              :auth=>@auth,
+                                              :client_options => {}
+                                              })
+
+
+## GA How to:
+
++ First, you have to register your api access in: [google api console](https://code.google.com/apis/console/) and create a server key.
++ Download you p12 key.
++ Add the created @developer.gserviceaccount.com to your users list in the analytics user panel.
++ Configure options based on server key and analytics profile id, not the (UA-something)account id!
+
+
 
 ## Contributing
 

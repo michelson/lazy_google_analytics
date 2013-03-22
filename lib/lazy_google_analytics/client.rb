@@ -6,12 +6,12 @@ module LazyGoogleAnalytics
       @auth   = opts[:auth]
 
       @api_method = opts[:client_options][:api_method] ||= @auth.analytics.data.ga.get
-      @ids = opts[:client_options][:ids] ||= "ga:#{@config.profile_id}"
+      @ids        = opts[:client_options][:ids]        ||= "ga:#{@config.profile_id}"
       @start_date = opts[:client_options][:start_date] ||= DateTime.now.prev_month.strftime("%Y-%m-%d")
-      @end_date = opts[:client_options][:end_date] ||= DateTime.now.strftime("%Y-%m-%d")
+      @end_date   = opts[:client_options][:end_date]   ||= DateTime.now.strftime("%Y-%m-%d")
       @dimensions = opts[:client_options][:dimensions] ||= "ga:day,ga:month"
-      @metrics = opts[:client_options][:metrics] ||= "ga:visits"
-      @sort = opts[:client_options][:sort] ||= "ga:month,ga:day"
+      @metrics    = opts[:client_options][:metrics]    ||= "ga:visits"
+      @sort       = opts[:client_options][:sort]       ||= "ga:month,ga:day"
 
     end
 
