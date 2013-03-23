@@ -11,7 +11,7 @@ module LazyGoogleAnalytics
       @end_date   = opts[:client_options][:end_date]   ||= DateTime.now.strftime("%Y-%m-%d")
       @dimensions = opts[:client_options][:dimensions] ||= "ga:day,ga:month"
       @metrics    = opts[:client_options][:metrics]    ||= "ga:visits"
-      @sort       = opts[:client_options][:sort]       ||= "ga:month,ga:day"
+      @sort       = opts[:client_options][:sort]       ||= @dimensions.split(",").reverse.join(",")
 
     end
 
