@@ -1,1 +1,10 @@
 Hey, Thanks for install Lazy Google Analytics!
+
+In order to make Lazy GA work you will need to follow these steps:
+
+   1. register your api access in: [google api console](https://code.google.com/apis/console/) and create a server key.
+   2. Download the p12 key. and save it in your app ie:. config/keys/xxx.p12
+   3. In order give permissions to the generated user to your GA profile you need to add the created @developer.gserviceaccount.com to your users list in the analytics profile user panel.
+   4. Configure options in config/initializers/lazy_google_analytics.rb
+
+Enjoy :)
