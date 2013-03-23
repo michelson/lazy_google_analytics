@@ -6,7 +6,6 @@ Lazy google analytics for the lazy programmer. it´s an abstraction around googl
 
 google-analytics-client gem is a very powerfull tool to access the api resources on google. but for me it was not very straightforward , so i come around with a simple way to implement it. thats all. Hope you like it.
 
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -23,23 +22,38 @@ Or install it yourself as:
 
 ## Simple Usage
 
-    config_options = pass_phrase: "notasecret",
-                     key_file: /location/to_your/key_file.p12,
-                     client_id: "XXXXX.apps.googleusercontent.com",
-                     scope: "https://www.googleapis.com/auth/analytics.readonly",
-                     profile_id: "XXXXX",
-                     email: "XXXXXX@developer.gserviceaccount.com"
+  setup options:
 
-    @config = LazyGoogleAnalytics::Config.new(config_options)
+    LazyGoogleAnalytics::Config.setup do |config|
+      config.pass_phrase = "notasecret"
+      config.key_file    = /location/to_your/key_file.p12
+      config.client_id   = "XXXXX.apps.googleusercontent.com"
+      config.scope       = "https://www.googleapis.com/auth/analytics.readonly"
+      config.profile_id  = "XXXXX"
+      config.email       = "XXXXXX@developer.gserviceaccount.com"
+    end
 
-    @auth   = LazyGoogleAnalytics::Auth.new(@config)
+  api calls:
 
-    @auth.authorize
+    @client = LazyGoogleAnalytics::Client.new()
 
-    @client = LazyGoogleAnalytics::Client.new({:config=>@config,
-                                              :auth=>@auth,
-                                              :client_options => {}
-                                              })
+  By default LazyGoogleAnalytics::Client is going to make a call for visits within 1 month timeline sorted by month & day, using the profile in config block.
+
+  But you can extend that behavior passing and entire options_hash with specific parameters:
+
+    @client = LazyGoogleAnalytics::Client.new()
+    @client.parameters({'ids' => "ga:XXXXX",
+                      'start-date' => "2013-03-12",
+                      'end-date' => "2013-04-12",
+                      'dimensions' => "ga:day,ga:month",
+                      'metrics' => "ga:visits",
+                      'sort' => "ga:month,ga:day" })
+
+## Rails 3
+
+  installs configuration initializer
+
+    rails g lazy_google_analytics:install
 
 ## GA How to:
 
@@ -50,7 +64,6 @@ If you follow this simple steps , you can´t fail.
   + Add the created @developer.gserviceaccount.com to your users list in the analytics user panel.
   + Configure options based on server key and analytics profile id, not the (UA-something) account id!
 
-
 ## Contributing
 
 1. Fork it
@@ -58,14 +71,4 @@ If you follow this simple steps , you can´t fail.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-
-### TODO
-
-  + Needs some refactor on client options.
-  + Needs more specs on client options.
-  + Config Generators for ruby on rails for the laziest ones.
-
-
-
 

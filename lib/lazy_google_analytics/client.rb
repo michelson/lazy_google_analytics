@@ -2,7 +2,7 @@ module LazyGoogleAnalytics
   class Client
 
     CLIENT_OPTIONS = %w(api_method parameters ids start_date end_date dimensions metrics sort filters)
-    attr_accessor :options
+    attr_accessor :options, :auth
 
     def initialize(opts = {})
 
