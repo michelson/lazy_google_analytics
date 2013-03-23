@@ -34,6 +34,12 @@ module LazyGoogleAnalytics
 
     def results
       @results = @auth.client.execute(@options)
+      #binding.pry
+      body = JSON.parse(@results.body)
+      if body.keys.include?("error")
+        raise body["error"]["errors"].collect{|e| e["reason"] + e["message"] }.join(", ")
+      end
+      @results
     end
 
     def formatted_columns
