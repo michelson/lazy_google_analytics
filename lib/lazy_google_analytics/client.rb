@@ -34,12 +34,7 @@ module LazyGoogleAnalytics
 
     def results
       @results = @auth.client.execute(@options)
-      #binding.pry
-      body = JSON.parse(@results.body)
-      if body.keys.include?("error")
-        raise body["error"]["errors"].collect{|e| e["reason"] + e["message"] }.join(", ")
-      end
-      @results
+      raise_detected_errors
     end
 
     def formatted_columns
@@ -62,6 +57,15 @@ module LazyGoogleAnalytics
 
     def merge_options(name, opts)
       @options.merge!  name => opts
+    end
+
+    def raise_detected_errors
+      body = JSON.parse(@results.body)
+      if body.keys.include?("error")
+        raise body["error"]["errors"].collect{|e| e["reason"] + e["message"] }.join(", ")
+      else
+        @results
+      end
     end
 
   end
