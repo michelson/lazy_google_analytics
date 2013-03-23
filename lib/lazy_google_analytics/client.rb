@@ -40,7 +40,6 @@ module LazyGoogleAnalytics
     end
 
     def formatted_columns
-
       (@results || self.results).data.column_headers.map { |c|
         c.name
       }.join("\t")
@@ -61,21 +60,6 @@ module LazyGoogleAnalytics
     def merge_options(name, opts)
       @options.merge!  name => opts
     end
-
-    def deep_merge_options(name, opts)
-      @options.deep_merge!  name => opts
-    end
-
-    def arguments_to_options(args)
-      if args.blank?
-        {:show => true}
-      elsif args.is_a? Array
-        args.first
-      else
-        args
-      end
-    end
-
 
   end
 end

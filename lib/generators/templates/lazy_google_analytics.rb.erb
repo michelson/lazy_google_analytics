@@ -1,0 +1,3 @@
+config = YAML.load( File.open( Rails.root + "config/lazy_ga_config.yml") )
+
+GA_CONFIG = LazyGoogleAnalytics::Config.new(config_options)

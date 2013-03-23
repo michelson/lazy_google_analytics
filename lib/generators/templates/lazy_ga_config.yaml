@@ -1,0 +1,6 @@
+pass_phrase: "notasecret"
+key_file: XXXXXXX-privatekey.p12
+client_id: "XXXXXXX.apps.googleusercontent.com"
+scope: "https://www.googleapis.com/auth/analytics.readonly"
+profile_id: "XXXXX"
+email: "XXXXXX@developer.gserviceaccount.com"
