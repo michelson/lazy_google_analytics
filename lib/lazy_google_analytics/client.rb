@@ -2,13 +2,12 @@ module LazyGoogleAnalytics
   class Client
 
     CLIENT_OPTIONS = %w(api_method parameters ids start_date end_date dimensions metrics sort filters)
-    attr_accessor :options, :config, :auth
+    attr_accessor :options
 
+    def initialize(opts = {})
 
-    def initialize(config, auth, opts = {})
-
-      @config = config
-      @auth   = auth
+      @auth ||= LazyGoogleAnalytics::Auth.new
+      @auth.authorize # check expiration and cache ?
 
       self.tap do |client|
         client.options    ||= {}
@@ -19,19 +18,17 @@ module LazyGoogleAnalytics
     end
 
     def defaults_options(opts)
-      @api_method = opts[:api_method] ||= @auth.analytics.data.ga.get
-      ids        = opts[:ids]        ||= "ga:#{@config.profile_id}"
+
       start_date = opts[:start_date] ||= DateTime.now.prev_month.strftime("%Y-%m-%d")
       end_date   = opts[:end_date]   ||= DateTime.now.strftime("%Y-%m-%d")
 
       self.api_method(@auth.analytics.data.ga.get)
-      self.parameters({'ids' => "ga:#{@config.profile_id}",
+      self.parameters({'ids' => "ga:#{LazyGoogleAnalytics::Config.profile_id}",
                       'start-date' => start_date,
                       'end-date' => end_date,
                       'dimensions' => "ga:day,ga:month",
                       'metrics' => "ga:visits",
                       'sort' => "ga:month,ga:day" })
-
     end
 
 

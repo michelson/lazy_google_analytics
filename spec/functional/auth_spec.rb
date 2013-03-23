@@ -2,8 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '../../spec_helper')
 
 describe "Config" do
   before(:all) do
-    @config = LazyGoogleAnalytics::Config.new(config_options)
-    @auth   = LazyGoogleAnalytics::Auth.new(@config)
+    config_setup
+    @auth = LazyGoogleAnalytics::Auth.new
   end
 
   it "authorization object" do

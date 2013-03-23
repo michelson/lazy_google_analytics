@@ -3,7 +3,8 @@ module LazyGoogleAnalytics
 
     attr_accessor :analytics, :client
 
-    def initialize(config)
+    def initialize
+      config = LazyGoogleAnalytics::Config
       @key = Google::APIClient::PKCS12.load_key(config.key_file, config.pass_phrase)
       @asserter = Google::APIClient::JWTAsserter.new( config.email, config.scope, @key)
     end

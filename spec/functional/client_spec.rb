@@ -2,10 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '../../spec_helper')
 
 describe "Client" do
   before(:all) do
-    @config = LazyGoogleAnalytics::Config.new(config_options)
-    @auth   = LazyGoogleAnalytics::Auth.new(@config)
-    @auth.authorize
-    @client = LazyGoogleAnalytics::Client.new(@config, @auth )
+    config_setup
+    @client = LazyGoogleAnalytics::Client.new()
   end
 
   it "find objects object" do
