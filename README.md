@@ -86,9 +86,10 @@ If you follow this simple steps , you can´t fail.
 
   + First, you have to register your api access in: [google api console](https://code.google.com/apis/console/) and create a server key.
   + Download the p12 key.
-  + Add the created @developer.gserviceaccount.com to your users list in the analytics user panel of the profile you want to retrieve the data, otherwise it wont work.
+  + Add the created @developer.gserviceaccount.com to your users list in the analytics .user panel of the profile you want to retrieve the data, otherwise it wont work.
   + Note that the profile_id of the configuration object is not the UA-XXXXX number , is the Google Analytics profile number.
-  + To play with the api to tests different options (without write any code) you can use [Google Analytics Query Explorer 2](https://ga-dev-tools.appspot.com/explorer/)
+  + To play with the api to tests different options (without write any code) you can use [Google Analytics Query Explorer 2](https://ga-dev-tools.appspot.com/explorer/).
+  + And last but not least [google analytics documentation](https://developers.google.com/analytics/).
 
 ## Contributing
 
