@@ -98,3 +98,6 @@ If you follow this simple steps , you can´t fail.
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+
+Copyright (c) 2013 miguel michelson, released under the MIT license
+
