@@ -1,10 +1,10 @@
 # LazyGoogleAnalytics
 
-Lazy google analytics it´s an abstraction around google-analytics-client gem, to make server to server api calls.
+Lazy google analytics it´s an abstraction around [google-api-client](http://code.google.com/p/google-api-ruby-client/) gem, to make server to server api calls.
 
 ## Motivation
 
-google-analytics-client gem is a very powerfull tool to access the api resources on google. but for me it was not very straightforward, so I come around with a simple way to implement it. that's all.
+[google-api-client](http://code.google.com/p/google-api-ruby-client/) gem is a very powerfull tool to access the api resources on google. but for me it was not very straightforward, so I come around with a simple way to implement it. that's all.
 
 Hope you like it.
 
