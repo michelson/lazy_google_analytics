@@ -19,22 +19,27 @@ module LazyGoogleAnalytics
 
     def defaults_options(opts)
 
+      api_method = opts[:api_method] ||= @auth.analytics.data.ga.get
       start_date = opts[:start_date] ||= DateTime.now.prev_month.strftime("%Y-%m-%d")
       end_date   = opts[:end_date]   ||= DateTime.now.strftime("%Y-%m-%d")
+      ids        = opts[:ids]        ||= "ga:#{LazyGoogleAnalytics::Config.profile_id}"
+      dimensions = opts[:dimensions] ||= "ga:day,ga:month"
+      metrics    = opts[:metrics]    ||= "ga:visits"
+      sort       = opts[:sort]       ||= "ga:month,ga:day"
 
-      self.api_method(@auth.analytics.data.ga.get)
-      self.parameters({'ids' => "ga:#{LazyGoogleAnalytics::Config.profile_id}",
+      self.api_method(api_method)
+      self.parameters({'ids' => ids,
                       'start-date' => start_date,
                       'end-date' => end_date,
-                      'dimensions' => "ga:day,ga:month",
-                      'metrics' => "ga:visits",
-                      'sort' => "ga:month,ga:day" })
+                      'dimensions' => dimensions,
+                      'metrics' => metrics,
+                      'sort' => sort })
     end
 
 
     def results
       @results = @auth.client.execute(@options)
-      raise_detected_errors
+      raise_detected_errors if @results.status > 200
     end
 
     def formatted_columns
@@ -61,11 +66,7 @@ module LazyGoogleAnalytics
 
     def raise_detected_errors
       body = JSON.parse(@results.body)
-      if body.keys.include?("error")
-        raise body["error"]["errors"].collect{|e| e["reason"] + e["message"] }.join(", ")
-      else
-        @results
-      end
+      raise body["error"]["errors"].collect{|e| "#{e["reason"]}: #{e["message"]}" }.join(", ") if body.keys.include?("error")
     end
 
   end

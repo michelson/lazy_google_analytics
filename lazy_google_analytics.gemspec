@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["miguel michelson"]
   spec.email         = ["miguelmichelson@gmail.com"]
   spec.description   = %q{google analytics api access for the lazy ones}
-  spec.summary       = %q{google analytics api access for the lazy ones}
+  spec.summary       = %q{google analytics api access server 2 server for the lazy ones}
   spec.homepage      = ""
   spec.license       = "MIT"
 

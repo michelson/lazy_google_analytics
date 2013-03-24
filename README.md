@@ -1,10 +1,12 @@
 # LazyGoogleAnalytics
 
-Lazy google analytics for the lazy programmer. it´s an abstraction around google-analytics-client gem.
+Lazy google analytics it´s an abstraction around google-analytics-client gem, to make server to server api calls.
 
 ## Motivation
 
-google-analytics-client gem is a very powerfull tool to access the api resources on google. but for me it was not very straightforward , so i come around with a simple way to implement it. thats all. Hope you like it.
+google-analytics-client gem is a very powerfull tool to access the api resources on google. but for me it was not very straightforward, so I come around with a simple way to implement it. that's all.
+
+Hope you like it.
 
 ## Installation
 
@@ -22,7 +24,7 @@ Or install it yourself as:
 
 ## Simple Usage
 
-  setup options:
+### Configuration setup:
 
     LazyGoogleAnalytics::Config.setup do |config|
       config.pass_phrase = "notasecret"
@@ -33,13 +35,17 @@ Or install it yourself as:
       config.email       = "XXXXXX@developer.gserviceaccount.com"
     end
 
-  api calls:
+### Api calls:
 
     @client = LazyGoogleAnalytics::Client.new()
 
-  By default LazyGoogleAnalytics::Client is going to make a call for visits within 1 month timeline sorted by month & day, using the profile in config block.
+  By default LazyGoogleAnalytics::Client is going to make a call for visits within 1 month timeline sorted by month & day, using the profile_id in config block.
 
-  But you can extend that behavior passing and entire options_hash with specific parameters:
+  But you can override specific parameters like this:
+
+    @client = LazyGoogleAnalytics::Client.new({:ids => "ga:123456"})
+
+  Also you can extend the options after initialization, passing and entire options_hash overriding all default parameters:
 
     @client = LazyGoogleAnalytics::Client.new()
     @client.parameters({'ids' => "ga:XXXXX",
@@ -49,20 +55,40 @@ Or install it yourself as:
                       'metrics' => "ga:visits",
                       'sort' => "ga:month,ga:day" })
 
+#### Results
+
+  To get the results of the initialized client you have to call .results method
+
+    @results = @client.results
+    @results.columns
+    @results.rows
+
+  Also this class have 2 convenience methods to output data:
+
+  To get the queried columns:
+
+    @results.formatted_columns
+
+  To get the rows:
+
+    @results.formatted_rows
+
+
 ## Rails 3
 
-  installs configuration initializer
+  Installs configuration initializer
 
     rails g lazy_google_analytics:install
 
-## GA How to:
+## Google Analytics How to:
 
 If you follow this simple steps , you can´t fail.
 
   + First, you have to register your api access in: [google api console](https://code.google.com/apis/console/) and create a server key.
   + Download the p12 key.
-  + Add the created @developer.gserviceaccount.com to your users list in the analytics user panel.
-  + Configure options based on server key and analytics profile id, not the (UA-something) account id!
+  + Add the created @developer.gserviceaccount.com to your users list in the analytics user panel of the profile you want to retrieve the data, otherwise it wont work.
+  + Note that the profile_id of the configuration object is not the UA-XXXXX number , is the Google Analytics profile number.
+  + To play with the api to tests different options (without write any code) you can use [Google Analytics Query Explorer 2](https://ga-dev-tools.appspot.com/explorer/)
 
 ## Contributing
 
