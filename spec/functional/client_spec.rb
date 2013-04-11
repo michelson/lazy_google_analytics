@@ -27,9 +27,9 @@ describe "Client" do
   describe "override entire options" do
     before :each do
       @report = LazyGoogleAnalytics::Client.new()
-      @report.parameters({'ids' => "ga:123456",
-                                'dimensions' => "ga:year,ga:month",
-                                'sort' => "ga:month,ga:day" })
+      @report.parameters({'ids'        => "ga:123456",
+                          'dimensions' => "ga:year,ga:month",
+                          'sort'       => "ga:month,ga:day" })
 
     end
 
@@ -70,7 +70,18 @@ describe "Client" do
     end
 
     it "find objects object" do
-      @client.results
+      @client.results.should_not be_nil
+    end
+
+    it "headers raw" do
+      @client.results.data.column_headers[0]["name"].should == "ga:day"
+      @client.results.data.column_headers[1]["name"].should == "ga:month"
+      @client.results.data.column_headers[2]["name"].should == "ga:visits"
+    end
+
+    it "rows raw" do
+      @client.results.data.rows.class.should be Array
+      @client.results.data.rows.should_not be_empty
     end
 
     it "headers" do

@@ -40,6 +40,7 @@ module LazyGoogleAnalytics
     def results
       @results = @auth.client.execute(@options)
       raise_detected_errors if @results.status > 200
+      @results
     end
 
     def formatted_columns
